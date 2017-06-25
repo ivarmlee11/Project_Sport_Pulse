@@ -4,9 +4,14 @@ const request = require('request');
 
 const db = require('../models');
 
-const twitterBot = require('../helpers/twitterBot.js');
-
 const Twit = require('twit');
+
+const twitterBot = new Twit({
+  consumer_key: process.env.TWITTERCONSUMERKEY,
+  consumer_secret: process.env.TWITTERCONSUMERSECRET,
+  access_token: process.env.BOTACCESSTOKEN,
+  access_token_secret: process.env.BOTACCESSTOKENSECRET
+});
 
 const ensureAuthenticated = require('../middleware/ensureAuth.js');
 // console.log(process.env.TWITTERCONSUMERKEY, process.env.TWITTERCONSUMERSECRET, process.env.BOTACCESSTOKEN, process.env.BOTACCESSTOKENSECRET);
