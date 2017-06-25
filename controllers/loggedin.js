@@ -36,17 +36,16 @@ router.get('/', ensureAuthenticated, function(req, res) {
       'follow': true,
       'user_id': process.env.BOTTWITTERUSERID
     }, function(err, data, res) {
+      twitterBot.post('direct_messages/new', 
+        { 
+          'text': message,
+          'screen_name': username,
+          'user_id': userId
+        }, function(err, data, res) {
 
+      });
     });
 
-  twitterBot.post('direct_messages/new', 
-    { 
-      'text': message,
-      'screen_name': username,
-      'user_id': userId
-    }, function(err, data, res) {
-
-    });
 
   res.render('loggedin', {user: req.user});
 });
