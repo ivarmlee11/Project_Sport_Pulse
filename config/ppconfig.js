@@ -1,5 +1,7 @@
 const express = require('express');
 const passport = require('passport');
+const db = require('../models');
+
 const TwitterStrategy = require('passport-twitter').Strategy;
 console.log(process.env.TWITTERCONSUMERKEY);
 console.log(process.env.TWITTERCONSUMERSECRET);
@@ -17,8 +19,15 @@ passport.use(new TwitterStrategy({
     callbackURL: 'http://localhost:3000/auth/twitter/callback'
   },
   function(token, tokenSecret, profile, cb) {
-
-    return cb(null, profile);
+    db.user.findOrCreate({
+      where: {
+        userid: profile.id,
+        username: profile.username,
+        twitteravi: profile.photos[0].value
+      }
+    }).spread(function(user, created) {
+      return cb(null, user);
+    });
   }));
 
 passport.serializeUser(function(user, cb) {

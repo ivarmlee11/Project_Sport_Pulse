@@ -5,7 +5,6 @@ const router = express.Router();
 const ensureAuthenticated = require('../middleware/ensureAuth.js');
 
 router.get('/', ensureAuthenticated, function(req, res) {
-  console.log(req.user);
   res.render('loggedin');
 });
 

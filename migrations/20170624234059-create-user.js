@@ -14,11 +14,8 @@ module.exports = {
       userid: {
         type: Sequelize.STRING
       },
-      token: {
+      twitteravi: {
         type: Sequelize.STRING
-      },
-      timeoftokenissue: {
-        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,
