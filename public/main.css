@@ -1,3 +1,24 @@
-body {
-  background-color: gray;
+body, html {
+    height: 100%;
+}
+
+/* The hero image */
+.hero-image {
+  /* The image used */
+  background-image: url("/stadium.jpg");
+
+  /* Set a specific height */
+  height: 50%;
+
+  margin-top: 40px;
+
+  /* Position and center the image to scale nicely on all screens */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.tall {
+  height: 400px;
 }
