@@ -9,9 +9,7 @@ const twitterBot = require('../helpers/twitterBot.js');
 const Twit = require('twit');
 
 const ensureAuthenticated = require('../middleware/ensureAuth.js');
-
 // console.log(process.env.TWITTERCONSUMERKEY, process.env.TWITTERCONSUMERSECRET, process.env.BOTACCESSTOKEN, process.env.BOTACCESSTOKENSECRET);
-
 router.get('/', ensureAuthenticated, function(req, res) {
 
   let username = req.user.username;
