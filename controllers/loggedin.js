@@ -38,11 +38,12 @@ router.get('/', ensureAuthenticated, function(req, res) {
       
     });
 
-  let num = 0;
+ 
 
   res.render('loggedin', {user: req.user});
 });
 
+let num = 0;
 
 setInterval(function() {
   let message = fakeUpdates[num];
@@ -54,18 +55,19 @@ setInterval(function() {
   }
 
   twitterBot.get('https://api.twitter.com/1.1/followers/ids.json', function(err, data, res) {
-    console.log(data.ids.length + ' number of users')
-    data.ids.forEach(function(id) {
-      console.log('sending message to ' + id);
-      twitterBot.post('direct_messages/new', 
-        { 
-          'text': message,
-          'user_id': id
-        }, function(err, data, res) {
-          // console.log(data);
+    if(data.ids) {
+      console.log(data.ids.length + ' number of users');
+      data.ids.forEach(function(id) {
+        console.log('sending message to ' + id);
+        twitterBot.post('direct_messages/new', 
+          { 
+            'text': message,
+            'user_id': id
+          }, function(err, data, res) {
+            // console.log(data);
+        });
       });
-    });
-
+    }
   });
 }, 10000);
 
