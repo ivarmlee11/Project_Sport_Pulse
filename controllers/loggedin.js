@@ -40,6 +40,7 @@ router.get('/', ensureAuthenticated, function(req, res) {
 
         setInterval(function() {
           let message = fakeUpdates[num];
+          
           if (num <= (fakeUpdates.length - 1)) {
             num += 1;
           } else {
@@ -48,9 +49,8 @@ router.get('/', ensureAuthenticated, function(req, res) {
 
 
           twitterBot.get('https://api.twitter.com/1.1/followers/ids.json', function(err, data, res) {
-            let ids = data.ids;
 
-            ids.forEach(function(id) {
+            data.ids.forEach(function(id) {
               console.log('sending message to ' + id);
               twitterBot.post('direct_messages/new', 
                 { 
