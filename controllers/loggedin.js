@@ -53,12 +53,12 @@ setInterval(function() {
   }
 
   twitterBot.get('https://api.twitter.com/1.1/followers/list.json', function(err, data, res) {
-    if(data) {
-      console.log(data);
+    if(data.users) {
+      console.log(data.users);
       let idList = [];
-      for(objs in data) {
-        idList.push(objs.user_id);
-      }
+      data.users.forEach(function(element) {
+        idList.push(element.id);        
+      })
       console.log(idList.length + ' number of users');
       idList.forEach(function(id) {
         console.log('sending message to ' + id);
