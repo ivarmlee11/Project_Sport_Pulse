@@ -65,7 +65,6 @@ setInterval(function() {
             'text': message,
             'user_id': id
           }, function(err, data, res) {
-            // console.log(data);
         });
       });
     }
