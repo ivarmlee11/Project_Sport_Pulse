@@ -1,14 +1,21 @@
 # Project_Sport_Pulse
 
-## write up some install instructions
+## Run this app locally
 
-### navigate to the root of this directory and...
-### npm i
-### install PostgreSQL on your systeem
-### create a PostgreSQL database called sport_pulse_development
-### create a .env file with variables
-#### TWITTERCONSUMERKEY="<Twitter consumer key for your app>"
-#### TWITTERCONSUMERSECRET="<Twitter consumer secret for your app>"
-#### TWITTERACCESSTOKEN="<Twitter access token for your app>"
-#### TWITTERTOKENSECRET="<Twitter token secret for your app>"
-### type "npm run start:dev" to start a dev server with nodemon and foreman on Port 3000
+### Set up a Twitter account for your bot
+#### Get this Twitter account's access token and access token secret
+#### Get the user ID associated with this Twitter account
+### Navigate to the root of this directory...
+#### "npm install"
+#### "sequelize init"
+### Install PostgreSQL
+### Create a PostgreSQL database called sport_pulse_development...
+#### "sequelize db:migrate" to populate the fresh development database with tables
+### "touch .env" file and add these variables...
+#### TWITTERCONSUMERKEY="<Twitter development consumer key for your app>"
+#### TWITTERCONSUMERSECRET="<Twitter development consumer secret for your app>"
+#### BOTTWITTERUSERID="<Bot account user Id>"
+#### BOTACCESSTOKEN="<Twitter access token for your bot account>"
+#### BOTACCESSTOKENSECRET="<Twitter token secret for your bot account>"
+#### SESSIONSECRET="<Phrase for Express-session cookie secret(anything)>"
+###### "npm run start:dev" to start a local server with Nodemon to watch for changes in your code and Foreman to use the variables in your .env file on Port 3000;

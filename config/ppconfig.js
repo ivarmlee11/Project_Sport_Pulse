@@ -3,8 +3,6 @@ const passport = require('passport');
 const db = require('../models');
 
 const TwitterStrategy = require('passport-twitter').Strategy;
-console.log(process.env.TWITTERCONSUMERKEY);
-console.log(process.env.TWITTERCONSUMERSECRET);
 
 // Configure the Twitter strategy for use by Passport.
 
@@ -13,10 +11,11 @@ console.log(process.env.TWITTERCONSUMERSECRET);
 // user's behalf, along with the user's profile.  The function must invoke `cb`
 // with a user object, which will be set at `req.user` in route handlers after
 // authentication.
+
 passport.use(new TwitterStrategy({
     consumerKey: process.env.TWITTERCONSUMERKEY,
     consumerSecret: process.env.TWITTERCONSUMERSECRET,
-    callbackURL: 'http://localhost:3000/auth/twitter/callback'
+    callbackURL: process.env.TWITTERAUTHDEVCALLBACK
   },
   function(token, tokenSecret, profile, cb) {
     db.user.findOrCreate({
