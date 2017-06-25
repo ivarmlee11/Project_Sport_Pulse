@@ -58,7 +58,8 @@ setInterval(function() {
       let idList = [];
       data.users.forEach(function(element) {
         console.log(element);
-        let id = parseInt(element.id_str);
+        console.log('------');
+        let id = element.id_str;
         idList.push(id);        
       })
       console.log(idList.length + ' number of users');
