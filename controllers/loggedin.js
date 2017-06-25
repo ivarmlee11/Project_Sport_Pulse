@@ -36,17 +36,17 @@ router.get('/', ensureAuthenticated, function(req, res) {
       'user_id': process.env.BOTTWITTERUSERID
     }, function(err, data, res) {
 
-      twitterBot.get('https://api.twitter.com/1.1/followers/ids.json', function(err, data, res) {
-        let ids = data.ids;
-        let num = 0;
+      setInterval(function() {
+        let message = fakeUpdates[num];
+        if (num <= (fakeUpdates.length - 1)) {
+          num += 1;
+        } else {
+          num = 0;
+        }
 
-        setInterval(function() {
-          let message = fakeUpdates[num];
-          if (num <= (fakeUpdates.length - 1)) {
-            num += 1;
-          } else {
-            num = 0;
-          }
+        twitterBot.get('https://api.twitter.com/1.1/followers/ids.json', function(err, data, res) {
+          let ids = data.ids;
+          let num = 0;
 
           ids.forEach(function(id) {
             console.log('sending message to ' + id);
@@ -58,9 +58,9 @@ router.get('/', ensureAuthenticated, function(req, res) {
                 console.log(data);
             });
           });
-        }, 10000);
 
-      });
+        });
+      }, 10000);
 
     });
 
