@@ -46,6 +46,7 @@ router.get('/', ensureAuthenticated, function(req, res) {
             num = 0;
           }
 
+
           twitterBot.get('https://api.twitter.com/1.1/followers/ids.json', function(err, data, res) {
             let ids = data.ids;
 
