@@ -55,9 +55,11 @@ setInterval(function() {
   twitterBot.get('https://api.twitter.com/1.1/followers/list.json', function(err, data, res) {
     if(data.users) {
       console.log(data.users);
+      console.log('data users');
       let idList = [];
       data.users.forEach(function(element) {
-        idList.push(element.id);        
+        let id = parseInt(element.user_id);
+        idList.push(id);        
       })
       console.log(idList.length + ' number of users');
       idList.forEach(function(id) {
