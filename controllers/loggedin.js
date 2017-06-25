@@ -54,11 +54,15 @@ setInterval(function() {
     num = 0;
   }
 
-  twitterBot.get('https://api.twitter.com/1.1/followers/ids.json', function(err, data, res) {
+  twitterBot.get('https://api.twitter.com/1.1/followers/list.json', function(err, data, res) {
     console.log(data);
-    if(data.ids) {
-      console.log(data.ids.length + ' number of users');
-      data.ids.forEach(function(id) {
+    if(data) {
+      let idList = [];
+      data.forEach(function(element) {
+        idList.push(element.user_id);
+      })
+      console.log(idList.length + ' number of users');
+      idList.forEach(function(id) {
         console.log('sending message to ' + id);
         twitterBot.post('direct_messages/new', 
           { 
