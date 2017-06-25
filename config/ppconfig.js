@@ -15,7 +15,7 @@ const TwitterStrategy = require('passport-twitter').Strategy;
 passport.use(new TwitterStrategy({
     consumerKey: process.env.TWITTERCONSUMERKEY,
     consumerSecret: process.env.TWITTERCONSUMERSECRET,
-    callbackURL: process.env.TWITTERAUTHPRODCALLBACK
+    callbackURL: process.env.TWITTERAUTHDEVCALLBACK
   },
   function(token, tokenSecret, profile, cb) {
     db.user.findOrCreate({

@@ -11,6 +11,7 @@ const ensureAuthenticated = require('../middleware/ensureAuth.js');
 console.log(process.env.TWITTERCONSUMERKEY, process.env.TWITTERCONSUMERSECRET, process.env.BOTACCESSTOKEN, process.env.BOTACCESSTOKENSECRET);
 
 router.get('/', ensureAuthenticated, function(req, res) {
+  console.log(req.user);
 
   let username = req.user.username;
   let userId = req.user.user_id;
@@ -33,7 +34,7 @@ router.get('/', ensureAuthenticated, function(req, res) {
 
     });
 
-  res.render('loggedin');
+  res.render('loggedin', {user: req.user});
 });
 
 module.exports = router;

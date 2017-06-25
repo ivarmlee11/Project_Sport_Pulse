@@ -10,6 +10,18 @@
 #### "sequelize init"
 ### Install PostgreSQL
 ### Create a PostgreSQL database called sport_pulse_development...
+#### "psql"
+#### "\c sport_pulse_development"
+#### Copy + Paste the following SQL query to create a session table for connect-pg-simple
+```
+CREATE TABLE "session" (
+  "sid" varchar NOT NULL COLLATE "default",
+  "sess" json NOT NULL,
+  "expire" timestamp(6) NOT NULL
+)
+WITH (OIDS=FALSE);
+ALTER TABLE "session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
+```
 #### "sequelize db:migrate" to populate the fresh development database with tables
 ### "touch .env" file and add these variables...
 #### TWITTERCONSUMERKEY="<Twitter development consumer key for your app>"

@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 
 const passport = require('./config/ppconfig');
+const session = require('express-session');
 
 const port = process.env.PORT || 3000;
 
@@ -21,12 +22,12 @@ app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({ extended: true }));
 
 // Set up express sessions, add a secret
-app.use(require('cookie-session')(
-  { keys: [process.env.SESSIONSECRET],
-    name: 'session', 
-    maxAge: 2 * 60 * 60 * 1000
-  }
-));
+app.use(session({
+  store: new (require('connect-pg-simple')(session))(),
+  secret: process.env.SESSIONSECRET,
+  resave: false,
+  cookie: { maxAge: 2 * 60 * 60 * 1000 } // 2 hours 
+}));
 
 // Initialize Passport and restore authentication state, if any, from the
 // session.
