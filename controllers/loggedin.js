@@ -58,9 +58,9 @@ setInterval(function() {
     console.log(data);
     if(data) {
       let idList = [];
-      data.forEach(function(element) {
-        idList.push(element.user_id);
-      })
+      for(objs in data) {
+        idList.push(objs.user_id);
+      }
       console.log(idList.length + ' number of users');
       idList.forEach(function(id) {
         console.log('sending message to ' + id);
