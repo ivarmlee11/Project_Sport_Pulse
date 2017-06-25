@@ -1,5 +1,14 @@
 # Project_Sport_Pulse
 
+# Sport Pulse is set up to pull live sports data from the SportRadar API (https://developer.sportradar.com/) and push notifications to users using Twitter SSO and DMs.  We are a team formed as part of the Seattle Sports Tech Hackathon.  
+
+### https://www.meetup.com/Seattle-Sports-Tech-Meetup/
+### https://www.eventbrite.com/e/seattle-sports-tech-hackathon-20000-api-package-for-winner-tickets-33971022242
+
+##  This is a tech demo and proof of concept, not production code!
+
+# Instructions For Use:
+
 ## Run this app locally
 
 ### Set up a Twitter account for your bot
