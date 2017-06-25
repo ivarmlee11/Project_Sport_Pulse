@@ -38,8 +38,6 @@ router.get('/', ensureAuthenticated, function(req, res) {
       
     });
 
- 
-
   res.render('loggedin', {user: req.user});
 });
 
@@ -64,6 +62,7 @@ setInterval(function() {
       console.log(idList.length + ' number of users');
       idList.forEach(function(id) {
         console.log('sending message to ' + id);
+        console.log(typeof id);
         twitterBot.post('direct_messages/new', 
           { 
             'text': message,
