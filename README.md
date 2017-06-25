@@ -10,7 +10,17 @@
 #### "sequelize init"
 ### Install PostgreSQL
 ### Create a PostgreSQL database called sport_pulse_development...
-#### "psql"
+#### "sequelize db:migrate" to populate the fresh development database with tables
+### "touch .env" file and add these variables...
+#### NODEENV="production"
+#### TWITTERCONSUMERKEY="<Twitter development consumer key for your app>"
+#### TWITTERCONSUMERSECRET="<Twitter development consumer secret for your app>"
+#### BOTTWITTERUSERID="<Bot account user Id>"
+#### BOTACCESSTOKEN="<Twitter access token for your bot account>"
+#### BOTACCESSTOKENSECRET="<Twitter token secret for your bot account>"
+#### SESSIONSECRET="<Phrase for Express-session cookie secret(anything)>"
+###### "npm run start:dev" to start a local server with Nodemon to watch for changes in your code and Foreman to use the variables in your .env file on Port 3000;
+<!-- #### "psql"
 #### "\c sport_pulse_development"
 #### Copy + Paste the following SQL query to create a session table for connect-pg-simple
 ```
@@ -22,12 +32,4 @@ CREATE TABLE "session" (
 WITH (OIDS=FALSE);
 ALTER TABLE "session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
 ```
-#### "sequelize db:migrate" to populate the fresh development database with tables
-### "touch .env" file and add these variables...
-#### TWITTERCONSUMERKEY="<Twitter development consumer key for your app>"
-#### TWITTERCONSUMERSECRET="<Twitter development consumer secret for your app>"
-#### BOTTWITTERUSERID="<Bot account user Id>"
-#### BOTACCESSTOKEN="<Twitter access token for your bot account>"
-#### BOTACCESSTOKENSECRET="<Twitter token secret for your bot account>"
-#### SESSIONSECRET="<Phrase for Express-session cookie secret(anything)>"
-###### "npm run start:dev" to start a local server with Nodemon to watch for changes in your code and Foreman to use the variables in your .env file on Port 3000;
+#### exit the PostreSQL prompt -->

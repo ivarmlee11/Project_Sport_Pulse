@@ -2,9 +2,12 @@ const express = require('express');
 const app = express();
 
 const passport = require('./config/ppconfig');
-const session = require('express-session');
+// const errorHandler = require('./helpers/redirectOnError');
 
 const port = process.env.PORT || 3000;
+
+// Error handler
+// app.use(errorHandler);
 
 // Configure view engine to render EJS templates.
 app.set('views', __dirname + '/views');
@@ -14,20 +17,15 @@ app.set('view engine', 'ejs');
 // logging, parsing, and session handling.
 app.use(require('morgan')('combined'));
 
+// Read form data
+app.use(require('body-parser').urlencoded({ extended: true }));
+
 // Read cookies so we can check information about the current session
 // Session information is stored as a cookie by express-session
 app.use(require('cookie-parser')());
 
-// Read form data
-app.use(require('body-parser').urlencoded({ extended: true }));
-
-// Set up express sessions, add a secret
-app.use(session({
-  store: new (require('connect-pg-simple')(session))(),
-  secret: process.env.SESSIONSECRET,
-  resave: false,
-  cookie: { maxAge: 2 * 60 * 60 * 1000 } // 2 hours 
-}));
+// Set up express session, add a secret
+app.use(require('express-session')({ secret: process.env.SESSIONSECRET, resave: false, saveUninitialized: false }));
 
 // Initialize Passport and restore authentication state, if any, from the
 // session.
