@@ -55,8 +55,8 @@ setInterval(function() {
   }
 
   twitterBot.get('https://api.twitter.com/1.1/followers/list.json', function(err, data, res) {
-    console.log(data);
     if(data) {
+      console.log(data);
       let idList = [];
       for(objs in data) {
         idList.push(objs.user_id);
