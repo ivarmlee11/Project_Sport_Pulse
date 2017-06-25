@@ -21,7 +21,12 @@ app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({ extended: true }));
 
 // Set up express sessions, add a secret
-app.use(require('express-session')({ secret: process.env.SESSIONSECRET , resave: true, saveUninitialized: true }));
+app.use(require('cookie-session')(
+  { keys: [process.env.SESSIONSECRET],
+    name: 'session', 
+    maxAge: 2 * 60 * 60 * 1000
+  }
+));
 
 // Initialize Passport and restore authentication state, if any, from the
 // session.
