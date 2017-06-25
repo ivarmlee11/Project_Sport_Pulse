@@ -65,6 +65,18 @@ setInterval(function() {
             'text': message,
             'user_id': id
           }, function(err, data, res) {
+            if(err) {
+              console.log(err);
+              console.log('errr');
+            }
+            if(data) {
+              console.log(data);
+              console.log('data');
+            }
+            if(res) {
+              console.log(res);
+              console.log('res');
+            }
         });
       });
     }
