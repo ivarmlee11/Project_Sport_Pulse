@@ -69,14 +69,7 @@ setInterval(function() {
               console.log(err);
               console.log('errr');
             }
-            if(data) {
-              console.log(data);
-              console.log('data');
-            }
-            if(res) {
-              console.log(res);
-              console.log('res');
-            }
+ 
         });
       });
     }
