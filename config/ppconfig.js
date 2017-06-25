@@ -18,11 +18,14 @@ passport.use(new TwitterStrategy({
     callbackURL: process.env.TWITTERAUTHDEVCALLBACK
   },
   function(token, tokenSecret, profile, cb) {
+    console.log(profile);
     db.user.findOrCreate({
       where: {
         userid: profile.id,
         username: profile.username,
-        twitteravi: profile.photos[0].value
+        twitteravi: profile.photos[0].value,
+        token: token,
+        tokensecret: tokenSecret
       }
     }).spread(function(user, created) {
       return cb(null, user);

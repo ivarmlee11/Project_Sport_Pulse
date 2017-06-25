@@ -1,17 +1,18 @@
 const express = require('express');
 const router = express.Router();
+const request = require('request');
 
 const db = require('../models');
 
-const TwitterBot = require('../helpers/twitterbot.js');
-const request = require('request');
+const twitterBot = require('../helpers/twitterBot.js');
+
+const Twit = require('twit');
 
 const ensureAuthenticated = require('../middleware/ensureAuth.js');
 
-console.log(process.env.TWITTERCONSUMERKEY, process.env.TWITTERCONSUMERSECRET, process.env.BOTACCESSTOKEN, process.env.BOTACCESSTOKENSECRET);
+// console.log(process.env.TWITTERCONSUMERKEY, process.env.TWITTERCONSUMERSECRET, process.env.BOTACCESSTOKEN, process.env.BOTACCESSTOKENSECRET);
 
 router.get('/', ensureAuthenticated, function(req, res) {
-  console.log(req.user);
 
   let username = req.user.username;
   let userId = req.user.user_id;
@@ -19,13 +20,23 @@ router.get('/', ensureAuthenticated, function(req, res) {
 
   let botFollowers = [];
   
-  let postReqString = 'https://api.twitter.com/1.1/friendships/create.json?user_id=' + process.env.BOTTWITTERUSERID + '&follow=true';
-  
-  request.post(postReqString, function(data) {
-    console.log('added');
+  const currentUser = new Twit({
+    consumer_key: process.env.TWITTERCONSUMERKEY,
+    consumer_secret: process.env.TWITTERCONSUMERSECRET,
+    access_token: req.user.token,
+    access_token_secret: req.user.tokensecret
   });
 
-  TwitterBot.post('direct_messages/new', 
+  currentUser.post('friendships/create', 
+    { 
+      'name': 'SportPulseBot',
+      'follow': true,
+      'user_id': process.env.BOTTWITTERUSERID
+    }, function(err, data, res) {
+
+    });
+
+  twitterBot.post('direct_messages/new', 
     { 
       'text': message,
       'screen_name': username,

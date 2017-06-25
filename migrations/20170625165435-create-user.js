@@ -8,13 +8,19 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      username: {
-        type: Sequelize.STRING
-      },
       userid: {
         type: Sequelize.STRING
       },
+      username: {
+        type: Sequelize.STRING
+      },
       twitteravi: {
+        type: Sequelize.STRING
+      },
+      token: {
+        type: Sequelize.STRING
+      },
+      tokensecret: {
         type: Sequelize.STRING
       },
       createdAt: {
