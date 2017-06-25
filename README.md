@@ -21,7 +21,6 @@
 ### Create a PostgreSQL database called sport_pulse_development...
 #### "sequelize db:migrate" to populate the fresh development database with tables
 ### "touch .env" file and add these variables...
-#### NODEENV="production"
 #### TWITTERCONSUMERKEY="<Twitter development consumer key for your app>"
 #### TWITTERCONSUMERSECRET="<Twitter development consumer secret for your app>"
 #### BOTTWITTERUSERID="<Bot account user Id>"
